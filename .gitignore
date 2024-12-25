@@ -4,4 +4,11 @@
 *.swp
 tags
 node_modules
-__pycache__
+__pycache__/node_modules/
+/__pycache__/
+*.pyc
+*.env
+*.DS_Store
+env/
+sites/
+*.sqlite3

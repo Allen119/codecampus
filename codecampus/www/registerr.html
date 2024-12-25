@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - CodeSpace</title>
+    <link rel="stylesheet" href="/assets/codecampus/css/styles.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">CodeSpace</a>
+    </nav>
+
+    <div class="auth-container">
+        <form class="auth-form" id="registerForm">
+            <h2 class="form-title">Create your account</h2>
+            
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required>
+                <div class="error-message" id="fullNameError">Please enter your full name</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="emailError">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <div class="password-requirements">
+                    Password must be at least 8 characters long and include uppercase, lowercase, number, and special character
+                </div>
+                <div class="error-message" id="passwordError">Password doesn't meet requirements</div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+            </div>
+
+            <div class="terms">
+                By creating an account, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>
+            </div>
+
+            <button type="submit" class="button">Create Account</button>
+            
+            <div class="form-footer">
+                <p>Already have an account? <a href="/signn-in.html">Sign In</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="/assets/codecampus/js/script.js"></script>
+</body>
+</html>
+

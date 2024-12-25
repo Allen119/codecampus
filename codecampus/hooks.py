@@ -3,7 +3,7 @@ app_title = "codeCampus"
 app_publisher = "team"
 app_description = "coding app"
 app_email = "allencijo119@gmail.com"
-app_license = "mit"
+app_license = "MIT"
 
 # Apps
 # ------------------
@@ -12,13 +12,13 @@ app_license = "mit"
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
-# 	{
-# 		"name": "codecampus",
-# 		"logo": "/assets/codecampus/logo.png",
-# 		"title": "codeCampus",
-# 		"route": "/codecampus",
-# 		"has_permission": "codecampus.api.permission.has_app_permission"
-# 	}
+#     {
+#         "name": "codecampus",
+#         "logo": "/assets/codecampus/logo.png",
+#         "title": "codeCampus",
+#         "route": "/codecampus",
+#         "has_permission": "codecampus.api.permission.has_app_permission"
+#     }
 # ]
 
 # Includes in <head>
@@ -29,8 +29,8 @@ app_license = "mit"
 # app_include_js = "/assets/codecampus/js/codecampus.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/codecampus/css/codecampus.css"
-# web_include_js = "/assets/codecampus/js/codecampus.js"
+web_include_css = "/assets/codecampus/css/styles.css"  # Global CSS for web pages
+web_include_js = "/assets/codecampus/js/script.js"  # Global JS for web pages
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "codecampus/public/scss/website"
@@ -40,7 +40,13 @@ app_license = "mit"
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
 # include js in page
-# page_js = {"page" : "public/js/file.js"}
+page_js = {
+    "sign-in": "/assets/codecampus/js/sign-in.js",  # JavaScript specific to the sign-in page
+}
+
+page_css = {
+    "sign-in": "/assets/codecampus/css/sign-in.css",  # CSS specific to the sign-in page
+}
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
@@ -57,11 +63,11 @@ app_license = "mit"
 # ----------
 
 # application home page (will override Website Settings)
-# home_page = "login"
+home_page = "index"  # Set home page to the sign-in page
 
 # website user home page (by Role)
 # role_home_page = {
-# 	"Role": "home_page"
+#     "Role": "home_page"
 # }
 
 # Generators
@@ -75,8 +81,8 @@ app_license = "mit"
 
 # add methods and filters to jinja environment
 # jinja = {
-# 	"methods": "codecampus.utils.jinja_methods",
-# 	"filters": "codecampus.utils.jinja_filters"
+#     "methods": "codecampus.utils.jinja_methods",
+#     "filters": "codecampus.utils.jinja_filters"
 # }
 
 # Installation
@@ -118,11 +124,11 @@ app_license = "mit"
 # Permissions evaluated in scripted ways
 
 # permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
+#     "Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
 # }
 #
 # has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
+#     "Event": "frappe.desk.doctype.event.event.has_permission",
 # }
 
 # DocType Class
@@ -130,7 +136,7 @@ app_license = "mit"
 # Override standard doctype classes
 
 # override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
+#     "ToDo": "custom_app.overrides.CustomToDo"
 # }
 
 # Document Events
@@ -138,32 +144,32 @@ app_license = "mit"
 # Hook on document methods and events
 
 # doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
+#     "*": {
+#         "on_update": "method",
+#         "on_cancel": "method",
+#         "on_trash": "method"
+#     }
 # }
 
 # Scheduled Tasks
 # ---------------
 
 # scheduler_events = {
-# 	"all": [
-# 		"codecampus.tasks.all"
-# 	],
-# 	"daily": [
-# 		"codecampus.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"codecampus.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"codecampus.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"codecampus.tasks.monthly"
-# 	],
+#     "all": [
+#         "codecampus.tasks.all"
+#     ],
+#     "daily": [
+#         "codecampus.tasks.daily"
+#     ],
+#     "hourly": [
+#         "codecampus.tasks.hourly"
+#     ],
+#     "weekly": [
+#         "codecampus.tasks.weekly"
+#     ],
+#     "monthly": [
+#         "codecampus.tasks.monthly"
+#     ],
 # }
 
 # Testing
@@ -175,14 +181,14 @@ app_license = "mit"
 # ------------------------------
 #
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "codecampus.event.get_events"
+#     "frappe.desk.doctype.event.event.get_events": "codecampus.event.get_events"
 # }
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
 # override_doctype_dashboards = {
-# 	"Task": "codecampus.task.get_dashboard_data"
+#     "Task": "codecampus.task.get_dashboard_data"
 # }
 
 # exempt linked doctypes from being automatically cancelled
@@ -208,37 +214,43 @@ app_license = "mit"
 # --------------------
 
 # user_data_fields = [
-# 	{
-# 		"doctype": "{doctype_1}",
-# 		"filter_by": "{filter_by}",
-# 		"redact_fields": ["{field_1}", "{field_2}"],
-# 		"partial": 1,
-# 	},
-# 	{
-# 		"doctype": "{doctype_2}",
-# 		"filter_by": "{filter_by}",
-# 		"partial": 1,
-# 	},
-# 	{
-# 		"doctype": "{doctype_3}",
-# 		"strict": False,
-# 	},
-# 	{
-# 		"doctype": "{doctype_4}"
-# 	}
+#     {
+#         "doctype": "{doctype_1}",
+#         "filter_by": "{filter_by}",
+#         "redact_fields": ["{field_1}", "{field_2}"],
+#         "partial": 1,
+#     },
+#     {
+#         "doctype": "{doctype_2}",
+#         "filter_by": "{filter_by}",
+#         "partial": 1,
+#     },
+#     {
+#         "doctype": "{doctype_3}",
+#         "strict": False,
+#     },
+#     {
+#         "doctype": "{doctype_4}"
+#     }
 # ]
 
 # Authentication and authorization
 # --------------------------------
 
 # auth_hooks = [
-# 	"codecampus.auth.validate"
+#     "codecampus.auth.validate"
 # ]
 
 # Automatically update python controller files with type annotations for this app.
 # export_python_type_annotations = True
 
 # default_log_clearing_doctypes = {
-# 	"Logging DocType Name": 30  # days to retain logs
+#     "Logging DocType Name": 30  # days to retain logs
 # }
 
+# Website Routing
+# ----------------
+website_route_rules = [
+    {"from_route": "/sign-in", "to_route": "www/signn-in.html"},
+    {"from_route": "/register", "to_route": "www/registerr.html"}
+]
