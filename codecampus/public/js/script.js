@@ -1,10 +1,10 @@
+
 document.querySelector('.auth-form').addEventListener('submit', async function (event) {
     event.preventDefault();
-    const form = document.getElementById('registerForm');
+
     const fullName = document.getElementById('fullName').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
 
     // Reset error messages
     document.querySelectorAll('.error-message').forEach(error => {
@@ -13,7 +13,6 @@ document.querySelector('.auth-form').addEventListener('submit', async function (
 
     // Client-side validation
     let isValid = true;
-    
     if (fullName.length < 2) {
         document.getElementById('fullNameError').style.display = 'block';
         isValid = false;
@@ -25,29 +24,40 @@ document.querySelector('.auth-form').addEventListener('submit', async function (
         isValid = false;
     }
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
+    if (password.length < 8) {
         document.getElementById('passwordError').style.display = 'block';
-        isValid = false;
-    }
-
-    if (password !== confirmPassword) {
-        document.getElementById('confirmPasswordError').style.display = 'block';
         isValid = false;
     }
 
     if (!isValid) return;
 
-    // For frontend testing, log the data and show success message
-    console.log('Form submitted with:', {
-        fullName,
-        email,
-        password: '********' // Don't log actual password
-    });
+    // Send data to the Frappe API
+    try {
+        let csrf_token = window.csrf_token; 
+        const response = await fetch('http://codecampus.local:8000/api/method/codecampus.api.register_user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Frappe-CSRF-Token': csrf_token,
+            },
+            body: JSON.stringify({
+                full_name: fullName,
+                email: email,
+                password: password,
+            }),
+        });
 
-    // Mock successful registration
-    alert('Registration successful! (Frontend Test)');
-    
-    // Uncomment to test redirect
-    // window.location.href = '/workspace';
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            alert(result.message);
+            // Redirect if needed
+            // window.location.href = '/workspace';
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    }
 });
